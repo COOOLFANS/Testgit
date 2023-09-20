@@ -1,1 +1,1 @@
-print("FUCK YOU GITHUB221!")
+print("FUCK YOU GITHUB1!")
