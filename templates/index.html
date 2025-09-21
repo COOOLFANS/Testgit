@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>智能天气穿搭助手</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="background-decoration"></div>
+    <header class="app-header">
+      <div class="header-content">
+        <h1>智能天气穿搭助手</h1>
+        <p>输入今日天气与体感信息，秒获贴心穿搭建议。</p>
+      </div>
+    </header>
+
+    <main class="app-container">
+      <section class="form-card">
+        <form id="recommendation-form" autocomplete="off">
+          <div class="field-group">
+            <label for="weather">今日天气</label>
+            <div class="input-with-actions">
+              <input
+                type="text"
+                id="weather"
+                name="weather"
+                placeholder="如：晴、多云、小雨"
+                required
+              />
+              <div class="quick-tags" role="list">
+                <button type="button" data-weather="晴">晴</button>
+                <button type="button" data-weather="多云">多云</button>
+                <button type="button" data-weather="小雨">小雨</button>
+                <button type="button" data-weather="大风">大风</button>
+              </div>
+            </div>
+            <p class="field-hint">支持自由输入，如“晴转多云”或“阵雨”。</p>
+            <p class="error-message" data-error-for="weather" role="alert"></p>
+          </div>
+
+          <div class="field-group inline">
+            <div>
+              <label for="temperature">气温（°C）</label>
+              <input
+                type="number"
+                id="temperature"
+                name="temperature"
+                inputmode="decimal"
+                placeholder="可选"
+              />
+              <p class="error-message" data-error-for="temperature" role="alert"></p>
+            </div>
+            <div>
+              <label for="wind">风力/风速</label>
+              <input
+                type="number"
+                id="wind"
+                name="wind"
+                inputmode="decimal"
+                placeholder="m/s，可选"
+                step="0.1"
+              />
+              <p class="error-message" data-error-for="windSpeed" role="alert"></p>
+            </div>
+          </div>
+
+          <button class="submit-button" type="submit">生成穿搭</button>
+        </form>
+      </section>
+
+      <section class="result-card" aria-live="polite">
+        <div class="placeholder" id="result-placeholder">
+          <h2>等待你的天气信息</h2>
+          <p>填写上方表单即可查看为你量身定制的穿衣方案。</p>
+        </div>
+        <article class="recommendation" id="recommendation" hidden>
+          <h2>
+            <span class="chip" id="summary-weather">晴</span>
+            <span class="chip" id="summary-temperature"></span>
+            <span class="chip" id="summary-wind"></span>
+          </h2>
+          <div class="recommendation-block">
+            <h3>推荐穿搭</h3>
+            <p id="outfit"></p>
+          </div>
+          <div class="recommendation-block" id="accessories-block" hidden>
+            <h3>建议搭配</h3>
+            <ul id="accessories"></ul>
+          </div>
+          <div class="recommendation-block" id="tips-block" hidden>
+            <h3>贴心提示</h3>
+            <ul id="tips"></ul>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>根据你的天气输入提供灵活的穿搭指南，助你舒适出行。</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </body>
+</html>
